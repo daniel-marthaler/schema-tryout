@@ -1,0 +1,55 @@
+type: object
+properties:
+  debug:
+    type: boolean
+  dryRun:
+    type: boolean
+  pipeline:
+    type: object
+    properties:
+      parentPom:
+        type: string
+      branching:
+        type: object
+        properties:
+          mainBranch:
+            type: string
+            description: the main branch of that project, the default is master
+          reviewers:
+            type: integer
+          branchProtection:
+            type: object
+            properties:
+              modification:
+                type: boolean
+      version:
+        type: string
+      autoDeployment:
+        type: object
+        properties:
+          release:
+            type: array
+            items:
+              type: string
+          integration:
+            type: array
+            items:
+              type: string
+      type:
+        type: array
+        items:
+          type: string
+          enum: [springBoot,javaLib]
+      docker:
+        type: array
+        items:
+          type: object
+          properties:
+            dockerFileDir:
+              type: string
+            imageName:
+              type: string
+required:
+  - debug
+  - dryRun
+  - pipeline
